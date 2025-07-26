@@ -69,33 +69,45 @@
 
 
 
+        // Day name set karne ke liye
+        const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const now = new Date();
+        const currentDay = dayNames[now.getDay()];
+        document.querySelector(".day p").innerText = currentDay;
+
+        // Time set karne ke liye
+        const hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'pm' : 'am';
+        const displayHour = hours % 12 === 0 ? 12 : hours % 12;
+        document.querySelector(".day span").innerText = `${displayHour}:${minutes} ${ampm}`;
 
 
         btn.addEventListener("click", function () {
-           
+
             mainfunction();
-            
+
 
         });
 
-         cityName.addEventListener("keyup", function (event) {
-              if(event.key=="Enter"){
+        cityName.addEventListener("keyup", function (event) {
+            if (event.key == "Enter") {
                 mainfunction();
-              }
-            });
+            }
+        });
 
 
-        function mainfunction(){
+        function mainfunction() {
             let cityName = cityNameInput.value;
 
-            if(cityName.trim()== ""){
+            if (cityName.trim() == "") {
                 alert("City Name is required")
             }
 
             loader.classList.remove("d-none")
 
 
-           fetch(`https://api.weatherapi.com/v1/current.json?key=53a18507cc144595b9a140323252207&q=${cityName}&aqi=no`)
+            fetch(`https://api.weatherapi.com/v1/current.json?key=53a18507cc144595b9a140323252207&q=${cityName}&aqi=no`)
 
                 .then(function (res) {
                     return res.json();
