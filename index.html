@@ -95,7 +95,8 @@
             loader.classList.remove("d-none")
 
 
-            fetch(`http://api.weatherapi.com/v1/current.json?key=53a18507cc144595b9a140323252207&q=${cityName}&aqi=no`)
+           fetch(`https://api.weatherapi.com/v1/current.json?key=53a18507cc144595b9a140323252207&q=${cityName}&aqi=no`)
+
                 .then(function (res) {
                     return res.json();
 
